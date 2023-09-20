@@ -1,0 +1,10 @@
+AzulCES = #0A4A6E
+
+Azul mejorado = #1378b3
+
+White = #FFFFFF
+
+grey = #EFEFEF
+
+black = #101010
+
