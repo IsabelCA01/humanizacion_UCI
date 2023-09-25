@@ -48,11 +48,7 @@ const LogIn = () => {
     return (
       <div className='loall'>
       <div className='locontainer'>
-        <div className="locolumns">
-          <div className="locolumna1">
-            <img className="lologo" src="src\assets\CVZ.png" alt="centered image"/>
-          </div>
-          <div className="locolumna2">
+        <div className="locolumna2">
           <h1 className="loh1">Iniciar Sesión</h1>
             <form onSubmit={handleSubmit}>
               <div className="loinput">
@@ -67,7 +63,6 @@ const LogIn = () => {
               <button className="loboton">Iniciar Sesión</button>
             </form>
           </div>
-        </div>
       </div>
       </div>
     );

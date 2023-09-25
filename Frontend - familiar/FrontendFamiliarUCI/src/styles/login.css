@@ -1,23 +1,29 @@
 .loall{
-    background-color:#b1c700 ;
-    margin: 10px 0px;
-    padding: 20px;
+    background-color:#EFEFEF ;
+    padding: 15px;
+    width: 96vw;
+    max-width: 100vw;    
 }
+
 .locontainer{
-    max-width: 100vw;
-    margin: 0px 0px;
-    padding: 10px 30px; /* Agregamos padding solo a los lados */
-    text-align: justify;
+    padding: 20px 30px;
+    text-align: center;
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    display: flex;
 }
+
 input {
     font-size:  16px; 
     padding:  20px 0px; 
+    margin-bottom: 20px;
     height:  56px; 
     border:  none; 
     border-bottom:  solid 1px white; 
-    background:  #12345e; 
+    background:  #12346e; 
     box-sizing:  border-box; 
     transition:  all .3s linear; 
     color:  white; 
@@ -33,7 +39,7 @@ input {
     padding:  15px 40px;
     margin-top:  15px; 
     background-color: white; 
-    color:  #12345e; 
+    color:  #12346e; 
     margin-left:  auto; 
     font-weight:  500;  
     border:  none;
@@ -45,8 +51,8 @@ input {
 .loboton:hover {
     transform:  translateY(-3px);
     box-shadow:  0 2px 6px -1px rgba(primary, .65);
-    background-color: #b1c700;
-    color: white;
+    background-color: #EFEFEF;
+    color: #1378b3;
   }
 
 .lologo{
@@ -58,8 +64,8 @@ input {
 }
 
 .locolumna2{
-    width: 50%;
-    background-color: #12345e;
+    width: 70%;
+    background-color: #12346e;
     color: white;
     text-align: center;
     text-justify: space-evenly;
@@ -67,20 +73,6 @@ input {
     min-height: auto;
     margin: none;
     
-}
-
-.locolumns{
-    padding: 0px 10px;
-    display: flex;
-    width: 100%;
-    align-content: center;
-    align-items: center;
-    justify-content: space-evenly;
-    
-}
-
-.locolumna1{
-    width: 50%;
 }
 
 .loinput{

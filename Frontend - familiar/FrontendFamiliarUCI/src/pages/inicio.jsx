@@ -1,11 +1,11 @@
 import "../styles/inicio.css";
 import { useState } from "react";
 
+import Carousel1 from "../components/Carousel/Carousel";
+
 const Index = () => {
     return (
-      <div>
       <div className="container">
-        <div className="shadow">
         <div className="background">
           <div className="backgroundtext">
           <h1>Humanización UCI</h1>
@@ -21,15 +21,17 @@ const Index = () => {
           <button className="button">Ver más</button>
           </div>
           <div className="backimage">
-          <img src="src/assets/homeimage.jpg" alt="Logo-CES" border="0" width="300" height="300"></img>
+          <img src="src/assets/homeimage.jpg" alt="Logo-CES" border="0" width="500" height="550"></img>
           </div>
         </div>
         <div className='personal'>
-          <h1 className="hetitle">Nuestro Personal</h1>
-          <br></br>
+          <h1 className="title">Nuestro Personal</h1>
+          <div className="outcarousel">
+            <br></br>
+            <div className="carousel">
+              <Carousel1/>
+            </div>
           </div>
-          
-        </div>
         </div>
       </div>
     );
