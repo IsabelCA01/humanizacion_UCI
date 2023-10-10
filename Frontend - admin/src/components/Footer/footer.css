@@ -1,0 +1,19 @@
+.footercont{
+    background-color: #0d2a4f;
+    color : #FFFFFF;
+    padding: 10px 30px;
+
+}
+
+.footercolumns{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.footerbottom{
+    display: flex;
+    justify-content: space-evenly;
+    border-top: 1px solid #FFFFFF;
+}
+

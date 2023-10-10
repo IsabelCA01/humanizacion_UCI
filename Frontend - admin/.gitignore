@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+firebase1.js
+public/*
+src/App.css
+src/App.jsx
+src/main1.jsx

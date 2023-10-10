@@ -1,0 +1,37 @@
+.graphicit{
+    background-color: #EFEFEF;
+    padding: 10px;
+    color: #0A4A6E;
+    display: flex;
+    border-bottom: 1px solid #77b0d194;
+}
+.graphicit h3{
+    width: 20%
+}
+
+.infographic{
+    display: flex;
+    align-items: right;
+    text-align: right;
+    width: 60%;
+}
+
+.graphicitimg{
+    width: 40%;
+    align-self: center;  
+    text-align: center;
+    justify-self: center;
+}
+.infographic p{
+    width: 60%;
+    align-self: right;
+    text-align: right;
+    padding-right: 15px;
+    
+}
+
+.infographic p span { 
+    font-weight: bold;
+    color: #0A4A6E;
+    padding-right: 10px;
+}
