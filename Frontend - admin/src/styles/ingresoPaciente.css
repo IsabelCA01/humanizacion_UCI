@@ -1,0 +1,104 @@
+.menu1{
+    width:100vw;
+    background-color: #FFFFFF;
+    height: 60px;
+    align-items: left;
+    justify-content: left;
+    display: flex;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    color: #FFFFFF;
+}
+
+.containeringreso{
+    width: 93%;
+    padding: 10px 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFFFFF;
+}
+
+.colingreso{
+    width: 100%;
+    background-color: #1E3A5F;
+    color: #FFFFFF;
+    padding: 0px 30vw;
+    padding-bottom: 20px;
+}
+
+.colingreso h1{
+    color: #FFFFFF;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 26px;
+    text-align: center;
+}
+
+.formingreso{
+    width: 100%;;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFFFFF;
+    color: #1E3A5F;
+    padding: 20px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-align: justify;
+    margin-bottom: 10px;
+    background-color: #FFFFFF;
+
+}
+
+.item label{
+    font-size: 20px;
+    width:50%;
+    font-weight: bold;
+    border-bottom: 1px solid #1E3A5F;
+    background-color: #FFFFFF;
+    color: #1E3A5F;
+}
+
+.item input{
+    width:50%;
+    height: auto;
+    margin:0px;
+    background-color: #EFEFEF;
+    color: #1E3A5F;
+
+}
+
+.item select{
+    width:50%;
+    height: 30px;
+    background-color: #EFEFEF;
+    color: #1E3A5F;
+}
+
+.item textarea{
+    width:50%;
+    height: 50px;
+    margin:0px;
+    background-color: #EFEFEF;
+    color: #1E3A5F;
+
+}
+
+.btning{
+    display: flex;
+    justify-content: center;
+
+}
+
+.btning button:hover{
+    background-color: #0A4A6E;
+    color: #FFFFFF;
+    border:none;
+}

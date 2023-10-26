@@ -1,27 +1,74 @@
   
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import "../styles/infoPacientes.css";
 import { useAuth }  from "../contexts/authContext";
 import { useNavigate } from "react-router-dom";
 
+
 import PacientInfo from '../components/pacientInfo/PacientInfo';
 import Graphicinfo from '../components/graphicItems/GraphicItems';
 import BurgerMenu from '../components/BurgerMenu/BurgerMenu';
+import { useUid } from "../contexts/authContext";
 
 const InfoPaciente = () => {
   const { signout } = useAuth();
   const navigate = useNavigate()
+  const uid = useUid(); // Obtenemos el uid desde el hook
+  const { logoutFunction } = useAuth();
+
+
+  const [nombre, setNombre] = useState([]);
+  const[apellido, setApellido] = useState([]);
+  const[edad, setEdad] = useState([]);
+  const[sexo, setSexo] = useState([]);
+  const[diagnostico, setDiagnostico] = useState([]);
+  const[idtype, setIdtype] = useState([]);
+  const[idnumber, setIdnumber] = useState([]);
+  const[date, setDate] = useState([]);
+  const[pcorazon, setPcorazon] = useState([]);
+  const[ppulmon, setPpulmon] = useState([]);
+  const[prinon, setPrinon] = useState([]);
+  const[comentarios, setComentarios] = useState([]);
 
   const handleLogout = async e => {
     e.preventDefault();
     try {
       // Llamar a la función signout para cerrar la sesión
-      await signout();
+      await logoutFunction();
       navigate("/");
     } catch (error) {
       console.error('Error al cerrar sesión:', error);
     }
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://localhost:4000/api/v1/server/patient?uid=${uid}`, {
+        method: 'GET',
+        headers: {
+        'Content-Type': 'application/json'
+        }
+        });
+        const data = await response.json();
+        setNombre(data.nombre);
+        setApellido(data.apellido);
+        setEdad(data.edad);
+        setSexo(data.sexo);
+        setDiagnostico(data.diagnostico);
+        setIdtype(data.idtype);
+        setIdnumber(data.idnumber);
+        setDate(data.date);
+        setPcorazon(data.Pcorazon);
+        setPpulmon(data.Ppulmon);
+        setPrinon(data.Prinon);
+        setComentarios(data.comentarios);
+      } catch (error) {
+        console.error('Error al obtener los datos del paciente:', error);
+      }
+    };
+    fetchData();
+  }, [uid]);
   
   return (
     < div className="paall">
@@ -37,17 +84,14 @@ const InfoPaciente = () => {
           <div className='column1'>
             <h1>Información básica del paciente</h1>
             <PacientInfo
-            name="Juan Camilo Yepes"
-            id = "Cédula de ciudadanía"
-            idnum = "123456789"
-            gender="Masculino"
-            age="22"
-            diagnostic="COVID-19"
-            admission="10/06/2023"
+            name={nombre}
+            id ={idtype}
+            idnum ={idnumber}
+            gender={sexo}
+            age={edad}
+            diagnostic={diagnostico}
+            admission={apellido}
             />
-            <div className='history'>
-              <h2>Historial de actualizaciones</h2>
-            </div>
           </div>
           <div className='column2'>
             <div className='visual'>
@@ -55,27 +99,27 @@ const InfoPaciente = () => {
               <Graphicinfo
               name = "Corazón"
               image="src/assets/AnatomicHeart.png"
-              points="7"/>
+              points={pcorazon}/>
               <Graphicinfo
               name = "Pulmón"
               image="src/assets/Lungs.png"
-              points="6"/>
+              points={ppulmon}/>
               <Graphicinfo
               name = "Riñones"
               image="src/assets/Kidneys.png"
-              points="9"/>
+              points={prinon}/>
               <div className='coments'>
                 <div className='coment'>
                   <h3>Comentarios:</h3>
-                  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-                    Voluptates ducimus labore at vero aliquam earum id, accusamus autem, 
-                    in, cupiditate quibusdam voluptatum magnam quo placeat illum officiis corporis! 
-                    Accusantium, officia!</p>
+                  <p>{comentarios}</p>
                   </div>
               </div>
               <p>Fecha de última actualización: 09/09/2023 14:05:08</p>
             </div>
           </div>
+        </div>
+        <div className='history'>
+              <h2>Historial de actualizaciones</h2>
         </div>
     </div>
   );

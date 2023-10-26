@@ -1,16 +1,17 @@
 .paall{
     background-color: #FFFFFF;
+    width:100vw;
 }
 
 .bcerrar{
-    background-color: #12346e;
-    color: #FFFFFF;
+    background-color: #EFEFEF;
+    color: #1E3A5F;
     display: flex;
 }
 
 .cerrar{
-    background-color: #12346e;
-    color: #FFFFFF;
+    background-color: #EFEFEF;
+    color: #1E3A5F;
     margin: 10px;
     align-items: right;
     justify-content: right;
@@ -40,14 +41,14 @@
     box-shadow: 0px 0px 10px black;
     width: 50%;
     margin: 0px 5px;
+    
 }
 .column1 h1{
-    color: #0A4A6E;
+    color: #FFFFFF;
     text-align: center;
     font-size: 30px;
-    padding: 10px 50px;
-    background-color: #FFFFFF;
-    margin: 10px;
+    padding: 10px 60px;
+    margin: 10px 10px 55px;
 }
 
 .column2{
@@ -99,4 +100,12 @@
     font-size: 20px;
     font-weight: bold;
     color: #0A4A6E;
+}
+
+.history{
+    background-color: #EFEFEF;
+    box-shadow: 0px 0px 10px black;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
 }

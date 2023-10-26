@@ -1,40 +1,17 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import ProtectedRoutes from "../ProtectedRoutes/ProtectedRoutes";
-
-import LogIn from "../../pages/login";
-import Index from "../../pages/inicio";
-import InfoPaciente from "../../pages/infoPacientes";
-import BurgerMenu from "../BurgerMenu/BurgerMenu";
-
 
 import "./header.css";
 
 const Header = () => {
   return (
-    <Router>
       <div className="header">
         <div className="col1">
           <img className="logo" src="src/assets/logoclinicaCES.png" alt="logo" border="0"></img>
-          <h1 className="hetitle">Unidad de Cuidados Intensivos</h1>
         </div>
-        <div className="pestañas">
-          <ul>
-          <h1 className="link"><li>
-            <Link to="/">Inicio</Link>
-          </li></h1>
-          <h1 className="link"><li>
-            <Link to="/login">Iniciar Sesión</Link>
-          </li></h1>
-          </ul>
+        <div className="col2">
+          <h1 className="hetitle">Puesto de enfermería UCI</h1>
         </div>
       </div>
-      <Routes>
-        <Route path="/" element={<Index />}></Route>
-        <Route path="/login" element={<LogIn />}></Route>
-        <Route path="/infopaciente" element={<ProtectedRoutes><InfoPaciente/></ProtectedRoutes>}></Route>
-      </Routes>
-    </Router>
   );
 };
 

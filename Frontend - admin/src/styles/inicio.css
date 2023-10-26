@@ -8,6 +8,18 @@
     justify-content: center;
 }
 
+.menu{
+    width:100%;
+    background-color: #EFEFEF;
+    height: 60px;
+    align-items: left;
+    justify-content: left;
+    display: flex;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    color: #EFEFEF;
+
+}
+
 
 
 .title {
@@ -40,6 +52,7 @@
     max-height: 550px;
     padding: 0px 0px;
     margin-top: 10px;
+    margin-bottom: 20px;
 
 }
 
@@ -51,7 +64,7 @@
 }
 
 .backgroundtext{
-    background-color: #12346e;
+    background-color: #1E3A5F;
     color: aliceblue;
     display: inline-block;
     max-width: 30%;
@@ -71,20 +84,7 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     padding-top: 10px;
 }
-.carousel{
-    width: 100%;
-    max-width: 85vw;
-}
 
-.outcarousel{
-    height: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 15px;
-    margin-bottom: 30px;
-
-}
 
 .hda{
     margin: 30px 70px;

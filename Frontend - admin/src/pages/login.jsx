@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useAuth }  from "../contexts/authContext";
 import { useNavigate } from "react-router-dom";
 
+import BotonVolver from "../components/Backbutton/BackButton";
+
 
 const LogIn = () => {
   const [user, setUser] = useState({
@@ -26,7 +28,7 @@ const LogIn = () => {
     setError("")
     try {
       await loginFunction(user.email, user.password);
-      navigate("/infopaciente");
+      navigate("/info");
     }
     catch (error){
       if (error.code === "auth/wrong-password"){
@@ -47,23 +49,28 @@ const LogIn = () => {
 
     return (
       <div className='loall'>
-      <div className='locontainer'>
-        <div className="locolumna2">
-          <h1 className="loh1">Iniciar Sesión</h1>
-            <form onSubmit={handleSubmit}>
-              <div className="loinput">
-              <input type="email" name='email' placeholder='Email' onChange={handleChange}></input>
-              </div>
-              <div className="suinput">
-              <input type="password" placeholder='Contraseña' name='password' id='password' onChange={handleChange}></input>
-              </div>
-              <div>
-              {error && <p>{error}</p>}
-              </div>
-              <button className="loboton">Iniciar Sesión</button>
-            </form>
+        <div className = "locontall">
+          <div className='lobotonvolver'>
+          <BotonVolver path="/"/>
           </div>
-      </div>
+          <div className='locontainer'>
+            <div className="locolumna2">
+              <h1 className="loh1">Iniciar Sesión</h1>
+                <form onSubmit={handleSubmit}>
+                  <div className="loinput">
+                  <input type="email" name='email' placeholder='Email' onChange={handleChange}></input>
+                  </div>
+                  <div className="suinput">
+                  <input type="password" placeholder='Contraseña' name='password' id='password' onChange={handleChange}></input>
+                  </div>
+                  <div>
+                  {error && <p>{error}</p>}
+                  </div>
+                  <button className="loboton">Iniciar Sesión</button>
+                </form>
+              </div>
+          </div>
+        </div>
       </div>
     );
   };

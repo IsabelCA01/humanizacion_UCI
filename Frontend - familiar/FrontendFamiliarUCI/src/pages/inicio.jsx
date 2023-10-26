@@ -3,10 +3,15 @@ import { useState } from "react";
 
 import Carousel1 from "../components/Carousel/Carousel";
 import Footer from "../components/Footer/Footer";
+import BurgerMenu from "../components/BurgerMenu/BurgerMenu";
 
 const Index = () => {
     return (
       <div className="container">
+        <div className="menu">
+          <BurgerMenu/>
+          <p>hola</p>
+        </div>
         <div className="background">
           <div className="backgroundtext">
           <h1>Humanización UCI</h1>
@@ -19,7 +24,6 @@ const Index = () => {
             cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
             cupidatat non proident, sunt in culpa qui officia deserunt mollit 
             anim id est laborum.</p>
-          <button className="button">Ver más</button>
           </div>
           <div className="backimage">
           <img src="src/assets/homeimage.jpg" alt="Logo-CES" border="0" width="500" height="550"></img>

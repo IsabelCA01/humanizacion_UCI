@@ -1,0 +1,10 @@
+.back{
+    color: #1E3A5F;
+    background-color: white;
+    width:5%;
+    margin: 10px;
+}
+
+.back:hover{
+    color: #1378b3;
+}
