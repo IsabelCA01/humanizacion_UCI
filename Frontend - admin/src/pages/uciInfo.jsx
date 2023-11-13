@@ -31,8 +31,6 @@ const UciInfo = () => {
           </div>
           <div className="buttonsinfo">
               <button className="cubículo-action-button" onClick={handleIngresoClick}>Ingresar paciente</button>
-              <button className="cubículo-action-button" onClick={handleActualizarClick}>Actualizar estado</button>
-              <button className="cubículo-action-button">Dar de alta</button>
           </div>
         </div>
       </div>

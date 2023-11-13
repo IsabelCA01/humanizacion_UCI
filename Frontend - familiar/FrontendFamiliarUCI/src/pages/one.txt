@@ -1,0 +1,12 @@
+const [nombre, setNombre] = useState([]);
+  const[apellido, setApellido] = useState([]);
+  const[edad, setEdad] = useState([]);
+  const[sexo, setSexo] = useState([]);
+  const[diagnostico, setDiagnostico] = useState([]);
+  const[idtype, setIdtype] = useState([]);
+  const[idnumber, setIdnumber] = useState([]);
+  const[date, setDate] = useState([]);
+  const[pcorazon, setPcorazon] = useState([]);
+  const[ppulmon, setPpulmon] = useState([]);
+  const[prinon, setPrinon] = useState([]);
+  const[comentarios, setComentarios] = useState([]);

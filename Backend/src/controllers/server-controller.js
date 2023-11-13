@@ -1,14 +1,27 @@
 const {
     getallpatientsinfo,
     getPatientinfo,
-    updateInfoSensor2,
-    deleteInfoSensor2,
+    updateInfoPatient,
+    deleteInfoPatient,
+    getUid,
+    getPatientinfoid,
+    createInfoPatient,
   } = require("../services/server-service")
   
 const getOnePatient = async (req, res) => {
     try {
       const { uid } = req.query;
       const Patient1Info = await getPatientinfo(uid);
+      return res.json(Patient1Info);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getOnePatientId = async (req, res) => {
+    try {
+      const { uid } = req.query;
+      const Patient1Info = await getPatientinfoid(uid);
       return res.json(Patient1Info);
     } catch (error) {
       console.log(error);
@@ -23,34 +36,91 @@ const getPatientsValues = async (req, res) => {
       console.log(error);
     }
   };
-  
-  
-const updateValueSensor2 = async (req, res) => {
+
+  const getUidPatient = async (req, res) => {
     try {
-      const { id } = req.body;
-      const { value } = req.body;
-      const sensor2Info = await updateInfoSensor2(id, value);
-      return res.json(sensor2Info);
+      const { idnumber } = req.query;
+      const Patientuid = await getUid(idnumber);
+      return res.json(Patientuid);
     } catch (error) {
       console.log(error);
     }
   };
   
-const deleteRecordSensor2 = async (req, res) => {
+  
+const updateValuePatient = async (req, res) => {
     try {
-      const { _id } = req.body;
-      const sensor2Info = await deleteInfoSensor2(_id);
+      const { uid } = req.query;
+      const { Pcorazon } = req.query;
+      const { Prinon } = req.query;
+      const {Ppulmon} = req.query;
+      const { comentarios } = req.query;
+      const PatientInfo = await updateInfoPatient(uid, Pcorazon, Prinon, Ppulmon, comentarios);
+      return res.json(PatientInfo);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
+const deleteRecordPatient = async (req, res) => {
+    try {
+      const { _id } = req.query;
+      const PatientInfo = await deleteInfoPatient(_id);
       console.log(req.body);
-      return res.json(sensor2Info);
+      return res.json(PatientInfo);
     } catch (error) {
       console.log(error);
     }
-  };
+};
+
+const CreateValuePatient = async (req, res) => {
+  try {
+    const {
+      Pcorazon,
+      Prinon,
+      Ppulmon,
+      comentarios,
+      cubiculo,
+      date,
+      nombre,
+      apellido,
+      diagnostico,
+      idtype,
+      idnumber,
+      edad,
+      sexo
+    } = req.body;
+
+    const PatientInfo = await createInfoPatient(
+      Pcorazon,
+      Prinon,
+      Ppulmon,
+      comentarios,
+      cubiculo,
+      date,
+      nombre,
+      apellido,
+      diagnostico,
+      idtype,
+      idnumber,
+      edad,
+      sexo
+    );
+
+    return res.json(PatientInfo);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+};
   
 module.exports = {
     getPatientsValues,
     getOnePatient,
-    updateValueSensor2,
-    deleteRecordSensor2
+    updateValuePatient,
+    deleteRecordPatient,
+    getUidPatient,
+    getOnePatientId,
+    CreateValuePatient
   };
     

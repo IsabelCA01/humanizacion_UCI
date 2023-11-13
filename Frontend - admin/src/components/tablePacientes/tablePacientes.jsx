@@ -10,8 +10,17 @@ const Tabla = () => {
   const fetchPatientsInfo = async () => {
     const response = await fetch('http://localhost:4000/api/v1/server/patient/all');
     const data = await response.json();
-    setDatos(data);
-    console.log(datos);
+    const formattedData = data.map((info) => {
+      const unixTimestamp = info.date._seconds;
+      const date = new Date(unixTimestamp * 1000);
+      const formattedDate = date.toLocaleString();
+      return {
+        ...info,
+        date: formattedDate
+      };
+    });
+    setDatos(formattedData);
+    console.log(datos.id)
   }
 
   useEffect(() => {
@@ -23,7 +32,7 @@ const Tabla = () => {
   const handleRowClick = (id) => {
     setSelectedRow(id);
   };
-
+  
   return (
     <table className='table'>
       <thead>
@@ -38,7 +47,9 @@ const Tabla = () => {
       </thead>
       <tbody>
         {datos.map((info) => (
-          <Rowinfo infor={info} cubiculo={info.cubiculo} name={info.nombre} id={info.idnumber} state={info.diagnostico} date={info.apellido}/>
+          <Rowinfo key={info.id} info={info} cubiculo={info.cubiculo} 
+          name={info.nombre +" "+ info.apellido} id={info.idnumber} 
+          state={info.diagnostico} date={info.date}/>
         ))}
       </tbody>
     </table>

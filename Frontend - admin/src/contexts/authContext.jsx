@@ -14,18 +14,28 @@ export const useAuth = () => {
     return context
 
 }
+export const useUid = () => { // Exportamos una función para obtener el UID desde otros archivos
+    const { uid } = useContext(cont);
+    return uid;
+}
 
 export function AuthProvider({ children }){
 
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [uid, setUid] = useState(null); // Agregamos el estado para almacenar el UID
 
     const singupfunction = (email, password) => 
-    createUserWithEmailAndPassword(auth, email, password);
+        createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            const newUid = userCredential.user.uid;
+            console.log("New user UID:", newUid);
+            setUid(newUid); // Almacenamos el UID en el estado
+            return newUid; // Retornamos el UID
+        });
 
     const loginFunction = async (email, password) => 
         signInWithEmailAndPassword(auth, email, password);
-        signInWithEmailAndPassword()
 
     const logoutFunction = () => signOut(auth);
     
@@ -39,6 +49,6 @@ export function AuthProvider({ children }){
     }, []);
     
 
-    return <cont.Provider value={{ singupfunction, loginFunction, logoutFunction, user, loading}}>
+    return <cont.Provider value={{ singupfunction, loginFunction, logoutFunction, user, loading, uid }}> {/* Pasamos el UID como valor del contexto */}
         {children}</cont.Provider>;
 }

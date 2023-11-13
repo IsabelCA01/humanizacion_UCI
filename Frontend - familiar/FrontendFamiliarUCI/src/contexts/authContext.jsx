@@ -24,9 +24,10 @@ export function AuthProvider({ children }){
     const singupfunction = (email, password) => 
     createUserWithEmailAndPassword(auth, email, password);
 
-    const loginFunction = async (email, password) => 
-        signInWithEmailAndPassword(auth, email, password);
-    
+    const loginFunction = async (email, password) => {
+        const response = signInWithEmailAndPassword(auth, email, password);
+        console.log(response);};
+
 
     const logoutFunction = () => signOut(auth);
 

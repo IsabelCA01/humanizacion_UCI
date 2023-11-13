@@ -100,3 +100,24 @@
     font-weight: bold;
     color: #0A4A6E;
 }
+
+.inputpoints{
+    background-color: #EFEFEF;
+    color: #1E3A5F;
+}
+
+.column2 input{
+    background-color: #EFEFEF;
+
+}
+
+.buttonactualizar{
+    background-color: #12346e;
+    color: #FFFFFF;
+    margin: 10px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 50%;
+    align-self: center;
+}

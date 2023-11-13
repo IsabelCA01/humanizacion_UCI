@@ -4,14 +4,20 @@ const router = Router();
 
 const {
     getOnePatient,
-    updateValueSensor2,
-    deleteRecordSensor2,
+    updateValuePatient,
+    deleteRecordPatient,
     getPatientsValues,
+    getUidPatient,
+    getOnePatientId,
+    CreateValuePatient,
 } = require("../../controllers/server-controller");
 
 router.get('/patient', getOnePatient);
 router.get('/patient/all', getPatientsValues);
-router.put("/patient", updateValueSensor2);
-router.delete('/patient', deleteRecordSensor2);
+router.put("/patient", updateValuePatient);
+router.delete('/patient', deleteRecordPatient);
+router.get('/patient/getuid', getUidPatient);
+router.get('/patientid', getOnePatientId);
+router.post('/patient', CreateValuePatient);
 
 module.exports = router;

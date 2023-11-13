@@ -3,6 +3,9 @@ const {
     getValueInfoFB,
     updateValueInfoFB,
     deleteValueInfoFB,
+    getUIDInfo,
+    getValueInfoId,
+    createNewPatient,
 } = require('../repositories/server.repository');
   
 const getallpatientsinfo = async () => {
@@ -20,26 +23,55 @@ const getPatientinfo = async (uid) => {
       console.log(error);
     }
 };
+
+const getPatientinfoid = async (uid) => {
+  try {
+    return await getValueInfoId(uid);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const getUid = async (idnumber) => {
+  try {
+    return await getUIDInfo(idnumber);
+  } catch (error) {
+    console.log(error);
+  }
+};
   
-const updateInfoSensor2 = async (id, value) => {
+const updateInfoPatient = async (uid, Pcorazon, Prinon, Ppulmon, comentarios) => {
     try {
-      return await updateValueInfoFB(id, value);
+      return await updateValueInfoFB(uid, Pcorazon, Prinon, Ppulmon, comentarios);
     } catch (error) {
       console.log(error);
     }
 };
   
-const deleteInfoSensor2 = async (_id) => {
+const deleteInfoPatient = async (_id) => {
     try {
       return await deleteValueInfoFB(_id);
     } catch (error) {
       console.log(error);
     }
 };
+
+const createInfoPatient = async (Pcorazon, Prinon, Ppulmon, comentarios, cubiculo, date, nombre, 
+  apellido, diagnostico, idtype, idnumber, edad, sexo) => {
+  try {
+    return await createNewPatient(Pcorazon, Prinon, Ppulmon, comentarios, cubiculo, date, nombre, 
+      apellido, diagnostico, idtype, idnumber, edad, sexo);
+  } catch (error) {
+    console.log(error);
+  }
+};
   
 module.exports = {
     getallpatientsinfo,
     getPatientinfo,
-    updateInfoSensor2,
-    deleteInfoSensor2,
+    updateInfoPatient,
+    deleteInfoPatient,
+    getUid,
+    getPatientinfoid,
+    createInfoPatient,
   };
