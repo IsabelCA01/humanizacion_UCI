@@ -6,6 +6,8 @@ const {
     getUIDInfo,
     getValueInfoId,
     createNewPatient,
+    getDocumentId,
+    createNewUser,
 } = require('../repositories/server.repository');
   
 const getallpatientsinfo = async () => {
@@ -65,6 +67,22 @@ const createInfoPatient = async (Pcorazon, Prinon, Ppulmon, comentarios, cubicul
     console.log(error);
   }
 };
+
+const getIdDocument = async (idnumber) => {
+  try {
+    return await getDocumentId(idnumber);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const createInfoUser = async (uid, paciente) => {
+  try {
+    return await createNewUser(uid, paciente);
+  } catch (error) {
+    console.log(error);
+  }
+};
   
 module.exports = {
     getallpatientsinfo,
@@ -74,4 +92,6 @@ module.exports = {
     getUid,
     getPatientinfoid,
     createInfoPatient,
+    getIdDocument,
+    createInfoUser
   };

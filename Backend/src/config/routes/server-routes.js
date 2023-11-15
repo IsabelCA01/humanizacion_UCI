@@ -10,6 +10,8 @@ const {
     getUidPatient,
     getOnePatientId,
     CreateValuePatient,
+    getIdPatientDoc,
+    CreateValueUser,
 } = require("../../controllers/server-controller");
 
 router.get('/patient', getOnePatient);
@@ -19,5 +21,8 @@ router.delete('/patient', deleteRecordPatient);
 router.get('/patient/getuid', getUidPatient);
 router.get('/patientid', getOnePatientId);
 router.post('/patient', CreateValuePatient);
+router.get('/patient/getid', getIdPatientDoc);
+router.post('/user', CreateValueUser);
+
 
 module.exports = router;

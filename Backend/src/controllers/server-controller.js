@@ -6,6 +6,8 @@ const {
     getUid,
     getPatientinfoid,
     createInfoPatient,
+    getIdDocument,
+    createInfoUser,
   } = require("../services/server-service")
   
 const getOnePatient = async (req, res) => {
@@ -90,14 +92,18 @@ const CreateValuePatient = async (req, res) => {
       edad,
       sexo
     } = req.body;
-
+    const dateArr = date.split("-");
+    const year = parseInt(dateArr[0]);
+    const month = parseInt(dateArr[1]) - 1; // Los meses en JavaScript van de 0 a 11
+    const day = parseInt(dateArr[2]);
+    const dateObj = new Date(year, month, day)
     const PatientInfo = await createInfoPatient(
       Pcorazon,
       Prinon,
       Ppulmon,
       comentarios,
       cubiculo,
-      date,
+      dateObj,
       nombre,
       apellido,
       diagnostico,
@@ -113,6 +119,34 @@ const CreateValuePatient = async (req, res) => {
     return res.status(500).json({ error: 'Internal server error' });
   }
 };
+
+const getIdPatientDoc = async (req, res) => {
+  try {
+    const { idnumber } = req.query;
+    const docId = await getIdDocument(idnumber);
+    return res.json(docId);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const CreateValueUser = async (req, res) => {
+  try {
+    const {
+      uid,
+      paciente
+    } = req.body;
+
+    const PatientInfo = await createInfoUser(
+      uid,
+      paciente
+    );
+    return res.json(PatientInfo);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+};
   
 module.exports = {
     getPatientsValues,
@@ -121,6 +155,8 @@ module.exports = {
     deleteRecordPatient,
     getUidPatient,
     getOnePatientId,
-    CreateValuePatient
+    CreateValuePatient,
+    getIdPatientDoc,
+    CreateValueUser,
   };
     

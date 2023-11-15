@@ -6,7 +6,8 @@ import LogIn from "../../pages/login";
 import Index from "../../pages/inicio";
 import ActualizarPaciente from '../../pages/actualizarPaciente';
 import UciInfo from "../../pages/uciInfo";
-import IngresoPaciente from '../../pages/ingresoPaciente';
+import IngresoPaciente1 from '../../pages/ingresoPaciente1';
+import IngresoPaciente2 from '../../pages/ingresoPaciente2';
 
 const Routespe = () => {
     return (
@@ -16,7 +17,8 @@ const Routespe = () => {
                 <Route path="/login" element={<LogIn />} />
                 <Route path="/actualizar" element={<ProtectedRoutes><ActualizarPaciente /></ProtectedRoutes>} />
                 <Route path="/info" element={<ProtectedRoutes><UciInfo/></ProtectedRoutes>} />
-                <Route path="/ingreso" element={<ProtectedRoutes><IngresoPaciente/></ProtectedRoutes>} />
+                <Route path="/ingreso" element={<ProtectedRoutes><IngresoPaciente1/></ProtectedRoutes>} />
+                <Route path="/ingresoinfo" element={<ProtectedRoutes><IngresoPaciente2/></ProtectedRoutes>} />
             </Routes>
         </Router>
     );

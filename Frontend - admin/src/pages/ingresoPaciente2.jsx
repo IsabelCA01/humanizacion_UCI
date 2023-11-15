@@ -2,18 +2,19 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "../styles/ingresoPaciente.css";
 import { useAuth } from '../contexts/authContext';
-import { useUid } from "../contexts/authContext";
 
 
 import BotonVolver from '../components/Backbutton/BackButton';
+import { useLocation } from 'react-router-dom';
 
 
-const IngresoPaciente = () => {
+const IngresoPaciente2 = () => {
     const navigate = useNavigate()
     const { singupfunction } = useAuth();
     const [error, setError] = useState();
-    const [uiduser, setUiduser] = useState();
-
+    const location = useLocation();
+    const uid1 = location.state.uid;
+    const[docid, setDocid] = useState();
 
     const [paciente, setPaciente] = useState({
         cubiculo: "",
@@ -31,31 +32,17 @@ const IngresoPaciente = () => {
         comentarios:"",
     });
 
-    const [createuser, setCreateuser] = useState({
-        email: "",
-        password: "",
-    });
 
     const handleChange = ({target: {name,value}}) => {
         if (name.startsWith("paciente_")) {
             setPaciente({...paciente, [name.substring(9)]: value})
-        } else if (name.startsWith("createuser_")) {
-            setCreateuser({...createuser, [name.substring(11)]: value})
-        }
+        } 
     }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         setError("");
         try {
-            const uid1 = await singupfunction(createuser.email, createuser.password);
-            const uid = useUid();
-            console.log("uid ingresopaciente", uid);
-            setUiduser(uid1);
-            console.log("uid user", uiduser);
-
-            console.log(paciente);
-            console.log(createuser);
             try {
                 const response = await fetch(`http://localhost:4000/api/v1/server/patient`, {
                     method: 'POST',
@@ -81,31 +68,52 @@ const IngresoPaciente = () => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-                navigate('/info');
+
+                try {
+                    const response1 = await fetch(
+                        `http://localhost:4000/api/v1/server/patient/getid?idnumber=${paciente.idnumber}`,
+                        {
+                            method: "GET",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                        }
+                    );
+                    const datadoc = await response1.json();
+                    setDocid(datadoc);
+                    console.log(datadoc);
+
+                    try{
+                        const response = await fetch(`http://localhost:4000/api/v1/server/user`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        Pcorazon: paciente.Pcorazon,
+                        Prinon: paciente.Prinon,
+                        uid: uid1,
+                        paciente: datadoc
+                    })
+                    });
+                    if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                    }
+                    navigate('/info');
+                    } catch (error) {
+                        console.error("Error al crear el doc usuario:", error);
+                    }
+
+                } catch (error) {
+                    console.error("Error al obtener el id del documento:", error);
+                }
             } catch (error) {
                 console.error('There was an error:', error);
             }
-            // navigate('/info');
         } catch (error) {
-            console.log(error.code)
-            if (error.code === "auth/weak-password"){
-                setError("La contraseña debe tener más de 6 carácteres.")
-            }
-            else if (error.code === "auth/missing-password"){
-                setError("Debe elegir una contraseña")
-            }
-            else if( error.code === "auth/invalid-email"){
-                setError("Email invalido")
-            }
-            else if( error.code === "auth/missing-email"){
-                setError("Debe ingresar un email")
-            }
-            else if( error.code === "auth/email-already-in-use"){
-                setError("El email ya se encuentra registrado")
-            }
-            else{
-            setError(error.message)}
-        }}; 
+            console.error('There was an error:', error);
+        }
+    }; 
     
     return (
         <div className="container">
@@ -178,16 +186,6 @@ const IngresoPaciente = () => {
                         <label htmlFor="fechadeingreso">Fecha de ingreso:</label>
                         <input type="date" id="fechadeingreso" name="paciente_fechadeingreso" value={paciente.fechadeingreso} onChange={handleChange} required />
                     </div>
-
-                    <div className='item'>
-                        <label htmlFor="email">Correo electrónico:</label>
-                        <input type="email" id="email" name="createuser_email" value={createuser.email} onChange={handleChange} required />
-                    </div>
-
-                    <div className='item'>
-                        <label htmlFor="password">Contraseña:</label>
-                        <input type="password" id="password" name="createuser_password" value={createuser.password} onChange={handleChange} required />
-                    </div>
                     <div className='btning'>
                     <button type="submit">Ingresar Paciente</button>
                     </div>
@@ -200,4 +198,4 @@ const IngresoPaciente = () => {
     );
 };
 
-export default IngresoPaciente;
+export default IngresoPaciente2;

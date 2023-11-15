@@ -95,6 +95,30 @@ const createNewPatient = async (Pcorazon, Prinon, Ppulmon, comentarios, cubiculo
   }
 };
 
+const getDocumentId = async (idnumber) => {
+  try {
+    const querySnapshot = await db.collection('pacientes').where("idnumber", "==", idnumber).limit(1).get();
+    let docId;
+    querySnapshot.forEach((doc) => {
+      docId = doc.id;
+    });
+    return docId;
+  } 
+  catch (error) {
+    console.log(error);
+  }
+};
+
+const createNewUser = async (uid, paciente) => {
+  try {
+    const newPatientRef = db.collection('usuarios').doc();
+    await newPatientRef.set({ uid, paciente});
+    return true;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 
 module.exports = {
   getAllValuesFB,
@@ -103,5 +127,7 @@ module.exports = {
   deleteValueInfoFB,
   getUIDInfo,
   getValueInfoId,
-  createNewPatient
+  createNewPatient,
+  getDocumentId,
+  createNewUser
 };
